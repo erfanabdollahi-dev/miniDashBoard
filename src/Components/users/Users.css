@@ -1,0 +1,196 @@
+
+
+.user-grid{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    grid-template-rows: 230px 1fr;
+    gap: 15px;
+}
+.top{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    background-color: rgb(42, 43, 58);
+    border-radius: 15px;
+    padding: 10px;
+}
+.input-submit{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+}
+.input-submit input{
+    width: 50%;
+    border-radius: 8px;
+    height: 37px;
+    transition: .2s ease-in-out;
+    color: var(--text-clr);
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    border: 2px solid var(--line-clr);
+    outline: none;
+    
+    background-color:rgb(36, 37, 54) ;
+}
+.input-submit input:focus{
+    border: 2px solid var(--accent-clr);
+    
+    outline: none;
+    background-color: var();
+}
+.top h1{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    
+    
+}
+
+.btn-add-user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    background-color: var(--accent-clr);
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+.btn-add-user i{
+    
+    font-size: 3em;
+}
+
+.btn-add-user:hover{
+    
+    background-color:#3d41ad;
+}
+.btn-add-user:active{
+    
+    background-color:var(--accent-clr);
+}
+
+.bottom{
+    display: flex;
+    
+    align-items: start;
+    background-color: rgb(42, 43, 58);
+    border-radius: 15px;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: auto;
+    
+    max-height:600px;
+    
+}
+
+/* Optional: hide ugly scrollbar in Webkit browsers */
+.bottom::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.bottom::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.bottom::-webkit-scrollbar-thumb {
+    background: var(--accent-clr);
+    border-radius: 4px;
+}
+
+
+.edit{
+    color: var(--accent-clr);
+    
+}
+
+.bin{
+    color: rgb(255, 37, 37);
+}
+
+
+
+.user-table {
+    width: 100%;
+    
+    
+    border-collapse: collapse;
+    font-family: "Poppins", sans-serif;
+    background: var(--base-clr);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    text-wrap: nowrap;
+}
+
+
+
+.user-table thead {
+    background-color: transparent;
+    
+    border-radius: 12px;
+    font-weight: bold;
+    
+    
+}
+
+.user-table thead th{
+    background: var(--accent-clr);
+    
+    
+    top: 0;
+    padding: 12px 16px;
+    text-align: center;
+    
+}
+.user-table thead th:first-child{
+    border-radius: 12px 0 0 0
+}
+.user-table thead th:last-child{
+    border-radius:  0 12px 0 0 ;
+}
+
+.user-table tbody tr td {
+    
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--line-clr);
+    border-radius: 1px;
+    text-align: center;
+}
+.user-table td i{
+    margin: 0 6px;
+    cursor: pointer;
+    transition: .2s;
+}
+.user-table td .bin:hover{
+    color: rgb(156, 2, 2);
+}
+.user-table td .edit:hover{
+    color: #4448b8;
+}
+
+
+@media (max-width: 700px) {
+    
+    
+    .input-submit input{
+        width: 75%;
+    }
+    .bottom{
+        max-height: 460px;
+    }
+    .user-table td i{
+        margin: 0 10px;
+    }
+    
+}
+
