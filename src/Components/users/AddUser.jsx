@@ -1,13 +1,23 @@
 import React from 'react'
 import './AddUser.css'
+import { useParams } from 'react-router-dom'
 
 
 const AddUserCompo = ()=>{
 
+    const {userId} = useParams();
+
+
+
     return (
+        
      <div className="add-user-container">
             <div className="add-user-top">
-                <h1>افزودن کاربر</h1>
+                <h1>
+                {userId? 'ویرایش کاربر' : 'افزودن کاربر' }
+
+                </h1>
+                
             </div>
 
             <div className="add-user-bottom">
@@ -43,7 +53,7 @@ const AddUserCompo = ()=>{
                     <input type="text" placeholder='ادرس' /> 
                 </div>
                 <div className="btns item-8">
-                    <button className='btn btn-add'>افزودن</button>
+                    <button className='btn btn-add'>{userId ? 'ویرایش' : "افزودن"}</button>
                     <button className='btn btn-back'>بازگشت</button>
                 </div> 
             </div>

@@ -34,7 +34,9 @@ const UsersCompo = ()=>{
                     <tbody>
                         <tr>
                             <td>
+                                <Link to='/users/add/2' >
                                 <i class='edit bx bx-edit' ></i>
+                                </Link>
                                 <i class='bin bx bxs-trash-alt' ></i>
                        
                             </td>
@@ -43,150 +45,7 @@ const UsersCompo = ()=>{
                             <td>erfan</td>
                             <td>1</td>
                         </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class='edit bx bx-edit' ></i>
-                                <i class='bin bx bxs-trash-alt' ></i>
-                       
-                            </td>
-                             <td>erfan@gamil.com</td>
-                            <td>77erfan</td>
-                            <td>erfan</td>
-                            <td>1</td>
-                        </tr>
-
+                
                     </tbody>
                     
                 </table>
