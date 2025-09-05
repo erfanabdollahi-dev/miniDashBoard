@@ -83,7 +83,7 @@
     display: flex;
     
     align-items: start;
-    background-color: rgb(42, 43, 58);
+    background-color: #2a2b3a;
     border-radius: 15px;
     padding: 10px;
     overflow-x: auto;
@@ -194,7 +194,9 @@
         
         
     }
-    
+    .top{
+        margin-top: 10px;
+    }
     .input-submit input{
         width: 75%;
     }

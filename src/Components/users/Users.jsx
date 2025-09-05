@@ -5,7 +5,7 @@ import './Users.css'
 const UsersCompo = ()=>{
     return(
         <>
-        <div className='container'>
+        {/* <div className='container'> */}
             <div className="user-grid">
             <div className="top">
                 <h1>مدیریت کاربران</h1>
@@ -190,7 +190,7 @@ const UsersCompo = ()=>{
             </div>
 
             </div>
-        </div>
+        {/* </div> */}
         </>
         
     )
