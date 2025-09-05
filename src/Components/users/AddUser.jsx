@@ -1,12 +1,14 @@
 import React from 'react'
 import './AddUser.css'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 
 const AddUserCompo = ()=>{
 
     const {userId} = useParams();
+    const param = useLocation()
     const navigate= useNavigate()
+
 
 
     return (
