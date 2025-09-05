@@ -13,6 +13,7 @@ const ContentCompo = ()=>{
 
                 <div className='container'>
                     <Routes>
+                        <Route path="/" element={<Navigate to="/users" replace />} />
                         <Route path='/users' element={isUser ? <UsersCompo/> : <Navigate to={'/todo'} />} />
                         <Route path='/users/add' element={<AddUserCompo/>} >
                             <Route path=':userId'/>
@@ -20,7 +21,8 @@ const ContentCompo = ()=>{
                         <Route path='/posts' element={<PostCompo/>} />
                         <Route path='/gallery' element={<GalleryCompo/>} />
                         <Route path='/todo' element={<TodoCompo/>} />
-                        <Route path='*' element={<UsersCompo/>} />
+                        
+                         <Route path="*" element={<Navigate to="/users" replace />} />
                     </Routes>
                 </div>
             
