@@ -161,11 +161,15 @@
 @media (max-height: 760px){
     .add-user-grid{
         grid-template-rows: .4fr .4fr .4fr 0.37fr .5fr .5fr .5fr ;
-
+        margin: 0;
     }
     .item{
-        padding-top: 0;
+        padding-top: 10px;
         padding-bottom: 0;
+        font-size: 12px;
+    }
+    .item input{
+        font-size: smaller;
     }
     .item-7{
         padding-bottom: 10px;
@@ -177,6 +181,7 @@
         margin-right: 5px;
         width: 60px;
     }
+
 }
 
 
