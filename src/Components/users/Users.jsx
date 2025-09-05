@@ -1,11 +1,43 @@
-import React from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import './Users.css'
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import axios from 'axios';
+import { UserContext , UserLenContext} from './userContext';
+
 
 const UsersCompo = ()=>{
     const navigate = useNavigate()
-    
+    const {users, setUsers} = useContext(UserContext);
+    const {atl, setAtl} = useContext(UserLenContext);
+
+    useEffect(()=>{
+
+
+        axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
+            if(users.length){
+                
+                setUsers([...users])
+                console.log(users)
+
+
+            }
+            else{
+
+                setUsers(res.data)
+                setAtl(res.data.length)
+  
+
+                
+
+            }
+         
+            
+        }).catch(err=>{
+            console.log(err);
+            
+        })
+    }, [])
     
     const handleUserDelete = (id) => {
         Swal.fire({
@@ -18,7 +50,25 @@ const UsersCompo = ()=>{
             cancelButtonText: 'لغو'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire('حذف شد!', 'کاربر با موفقیت حذف شد.', 'success');
+
+                axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`).then(res=>{
+                    console.log(res);
+                    console.log(atl);
+  
+                    
+                    if(res.status == 200){
+                        const newUsers = users.filter(u=> u.id != id);
+                        setUsers(newUsers)
+                        Swal.fire('حذف شد!', 'کاربر با موفقیت حذف شد.', 'success');
+                    }
+                    else{
+                        Swal.fire(' خطا!', 'خذف کاربر با خطا مواجه شد!', 'error');
+                    }
+
+
+                })
+
+                
             } else {
                 Swal.fire('لغو شد', 'کاربر حذف نشد.', 'error');
             }
@@ -34,8 +84,8 @@ const UsersCompo = ()=>{
         <h1>مدیریت کاربران</h1>
         <div className="input-submit">
         <button className='btn-add-user'>
-        <Link to='/users/add'>
-        <i className='bx bx-plus'></i>
+        <Link to='/users/add' >
+            <i className='bx bx-plus'></i>
         </Link>
         </button>
         <input type="text" placeholder='جستجو کاربر' />
@@ -43,6 +93,8 @@ const UsersCompo = ()=>{
         </div>
         </div>
         <div className="bottom">
+        
+        
         <table className='user-table'>
         <thead>
         <tr>
@@ -54,23 +106,42 @@ const UsersCompo = ()=>{
         </tr>
         </thead>
         <tbody>
-        <tr>
-        <td>
-        <i className='bin bx bxs-trash-alt' onClick={()=>handleUserDelete(1)} ></i>
-        
-        <i className='edit bx bx-edit' onClick={()=> navigate('/users/add/2', {state:{x:'test'}})}></i>
-        
-        
-        </td>
-        <td>erfan@gamil.com</td>
-        <td>77erfan</td>
-        <td>erfan</td>
-        <td>1</td>
-        </tr>
-        
+        {users.length ? (
+
+            users.map(u =>(
+            <tr key={u.id}>
+            <td>
+            <i className='bin bx bxs-trash-alt' onClick={()=>handleUserDelete(u.id)} ></i>
+            
+            <i className='edit bx bx-edit' onClick={()=> navigate(`/users/add/${u.id}`, {state:{x:'test'}})}></i>
+            
+            
+            </td>
+            <td>{u.email}</td>
+            <td>{u.username}</td>
+            <td>{u.name}</td>
+            <td>{u.id}</td>
+            </tr>
+
+            ))
+            
+        ):(
+            <tr>
+            <td>
+                -
+            </td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            </tr>
+        )}
         </tbody>
-        
         </table>
+        
+        
+        
+        
         </div>
         
         </div>
@@ -81,4 +152,4 @@ const UsersCompo = ()=>{
 }
 
 
-export default UsersCompo;
+export default memo(UsersCompo);
