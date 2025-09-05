@@ -33,6 +33,7 @@ const AddUserCompo = ()=>{
             const nexId = atl + 1
             setAtl(atl+1)
             setUsers([...users, {...data, id: nexId}])
+            console.log(res)
 
         })
         navigate('/users')
