@@ -1,5 +1,6 @@
 import React from 'react'
 import './Users.css'
+import { Link } from 'react-router-dom';
 
 
 const UsersCompo = ()=>{
@@ -11,7 +12,9 @@ const UsersCompo = ()=>{
                 <h1>مدیریت کاربران</h1>
                 <div className="input-submit">
                     <button className='btn-add-user'>
-                    <i class='bx bx-plus'></i>
+                        <Link to='/users/add'>
+                             <i class='bx bx-plus'></i>
+                       </Link>
                     </button>
                     <input type="text" placeholder='جستجو کاربر' />
          
