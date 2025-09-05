@@ -1,9 +1,10 @@
 import React from 'react'
 import './Users.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const UsersCompo = ()=>{
+    const navigate = useNavigate()
     return(
         <>
         {/* <div className='container'> */}
@@ -34,10 +35,10 @@ const UsersCompo = ()=>{
                     <tbody>
                         <tr>
                             <td>
-                                <Link to='/users/add/2' >
-                                <i class='edit bx bx-edit' ></i>
-                                </Link>
                                 <i class='bin bx bxs-trash-alt' ></i>
+                                
+                                <i class='edit bx bx-edit' onClick={()=> navigate('/users/add/2')}></i>
+                             
                        
                             </td>
                              <td>erfan@gamil.com</td>

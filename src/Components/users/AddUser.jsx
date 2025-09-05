@@ -1,12 +1,12 @@
 import React from 'react'
 import './AddUser.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 const AddUserCompo = ()=>{
 
     const {userId} = useParams();
-
+    const navigate= useNavigate()
 
 
     return (
@@ -54,7 +54,7 @@ const AddUserCompo = ()=>{
                 </div>
                 <div className="btns item-8">
                     <button className='btn btn-add'>{userId ? 'ویرایش' : "افزودن"}</button>
-                    <button className='btn btn-back'>بازگشت</button>
+                    <button className='btn btn-back' onClick={()=> navigate(-1)}>بازگشت</button>
                 </div> 
             </div>
 
