@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './AddUser.css'
 import {  useNavigate, useParams } from 'react-router-dom'
-import axios from 'axios';
 import { UserContext, UserLenContext } from './userContext';
-import Swal from 'sweetalert2';
+import { jpAxios } from '../../JpAxios';
+import { addUserService , updateUserService} from './services/AddUserS';
+
 
 const AddUserCompo = ()=>{
     
@@ -24,93 +25,23 @@ const AddUserCompo = ()=>{
         }
     })
     
+    
+    
+    
+    
     const handelAddUser = ()=>{
-        console.log(data)
-        axios.post('https://jsonplaceholder.typicode.com/users', data)
-        .then(res=>{
-            
-            const nexId = atl + 1
-            setAtl(atl+1)
-            setUsers([...users, {...data, id: nexId}])
-            console.log(res)
-            
-        })
+        addUserService(data,atl, setAtl,setUsers,users);
         navigate('/users')
     }
-    
+
     const handelChangeUser = ()=>{
-        axios.put(`https://jsonplaceholder.typicode.com/users/${userId}`, data)
-        .then(res=>{
-            setData({
-                name:res.data.name,
-                username:res.data.username,
-                email:res.data.email,
-                address: {
-                    street:res.data.address.street,
-                    city:res.data.address.city,
-                    suite: res.data.address.suite,
-                    zipcode: res.data.address.zipcode,
-                }
-            })
-            
-            
-            const updatedUsers = users.map(u=>u.id == userId? {...u,...data}: u);
-            setUsers(updatedUsers)
-            console.log(res, 'updated')
-            let timerInterval;
-            Swal.fire({
-                title: "در حال ویرایش",
-                html: "درحال بسته شدن <b></b> .",
-                timer: 300,
-                timerProgressBar: true,
-                color: '#ffffffff',
-                background : "#2a2b3a",
-                didOpen: () => {
-                    Swal.showLoading();
-                    const timer = Swal.getPopup().querySelector("b");
-                    timerInterval = setInterval(() => {
-                        timer.textContent = `${Swal.getTimerLeft()}`;
-                    }, 20);
-                },
-                willClose: () => {
-                    clearInterval(timerInterval);
-                    navigate('/users')
-                }
-            })
-            
-        })
-        .catch(err=>{
-            const updatedUsers = users.map(u=>u.id == userId? {...u,...data}: u);
-            setUsers(updatedUsers)
-            console.log('updated')
-            let timerInterval;
-            Swal.fire({
-                title: "در حال ویرایش",
-                html: "درحال بسته شدن <b></b> .",
-                timer: 300,
-                timerProgressBar: true,
-                color: '#ffffffff',
-                background : "#2a2b3a",
-                didOpen: () => {
-                    Swal.showLoading();
-                    const timer = Swal.getPopup().querySelector("b");
-                    timerInterval = setInterval(() => {
-                        timer.textContent = `${Swal.getTimerLeft()}`;
-                    }, 20);
-                },
-                willClose: () => {
-                    clearInterval(timerInterval);
-                    navigate('/users')
-                }
-            })
-            
-        })
         
+        updateUserService(data,setData,users,setUsers,userId,navigate);
     }
     useEffect(()=>{
         if(userId){
             
-            axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+            jpAxios.get(`/users/${userId}`)
             .then(res=>{
                 setData({
                     name:res.data.name,
@@ -159,7 +90,7 @@ const AddUserCompo = ()=>{
         type="text"
         name="name"
         id="name"
-        value={userId ? (data.name || "------") : data.name }
+        value={userId ? (data.name ) : data.name }
         onChange={(e) => setData({ ...data, name: e.target.value })}
         />
         </div>
@@ -170,7 +101,7 @@ const AddUserCompo = ()=>{
         type="text"
         name="username"
         id="username"
-        value={userId ? (data.username || "------") : data.username }
+        value={userId ? (data.username ) : data.username }
         onChange={(e) => setData({ ...data, username: e.target.value })}
         />
         </div>
@@ -181,7 +112,7 @@ const AddUserCompo = ()=>{
         type="text"
         name="email"
         id="email"
-        value={userId ?( data.email || "------") : data.email }
+        value={userId ?( data.email ) : data.email }
         onChange={(e) => setData({ ...data, email: e.target.value })}
         />
         </div>
@@ -194,7 +125,7 @@ const AddUserCompo = ()=>{
         <input
         type="text"
         placeholder="شهر"
-        value={userId ? (data.address.city || "------") : data.address.city }
+        value={userId ? (data.address.city ) : data.address.city }
         onChange={(e) =>
             setData({ ...data, address: { ...data.address, city: e.target.value } })
         }
@@ -202,7 +133,7 @@ const AddUserCompo = ()=>{
         <input
         type="text"
         placeholder="پلاک"
-        value={userId ? (data.address.street || "------") : data.address.street }
+        value={userId ? (data.address.street ) : data.address.street }
         onChange={(e) =>
             setData({ ...data, address: { ...data.address, street: e.target.value } })
         }
@@ -214,7 +145,7 @@ const AddUserCompo = ()=>{
         <input
         type="text"
         placeholder="کدپستی"
-        value={userId ? (data.address.zipcode || "------") : data.address.zipcode }
+        value={userId ? (data.address.zipcode ) : data.address.zipcode }
         onChange={(e) =>
             setData({ ...data, address: { ...data.address, zipcode: e.target.value } })
         }
@@ -225,7 +156,7 @@ const AddUserCompo = ()=>{
         <input
         type="text"
         placeholder="آدرس"
-        value={userId ?( data.address.suite || "------") : data.address.suite }
+        value={userId ?( data.address.suite ) : data.address.suite }
         onChange={(e) =>
             setData({ ...data, address: { ...data.address, suite: e.target.value } })
         }

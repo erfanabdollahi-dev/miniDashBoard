@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { UserContext , UserLenContext} from './userContext';
-
+import { jpAxios } from '../../JpAxios';
 
 const UsersCompo = ()=>{
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ const UsersCompo = ()=>{
     useEffect(()=>{
         
         
-        axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
+        jpAxios.get('/users').then(res=>{
             if(users.length){
                 setUsers([...users])
             }
@@ -45,7 +45,7 @@ const UsersCompo = ()=>{
             background: "#2a2b3a",
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`).then(res => {
+                jpAxios.delete(`/users/${id}`).then(res => {
                     const newUsers = users.filter(u => u.id != id);
                     setUsers(newUsers);
                     
