@@ -9,6 +9,7 @@ import { UserContext , UserLenContext} from './userContext';
 const UsersCompo = ()=>{
     const navigate = useNavigate()
     const {users, setUsers} = useContext(UserContext);
+    const [searchUser, setSearchUser] = useState('')
     const {atl, setAtl} = useContext(UserLenContext);
     
     useEffect(()=>{
@@ -16,20 +17,11 @@ const UsersCompo = ()=>{
         
         axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
             if(users.length){
-                
                 setUsers([...users])
-                
-                
-                
             }
             else{
-                
                 setUsers(res.data)
-                setAtl(res.data.length)
-                
-                
-                
-                
+                setAtl(res.data.length)         
             }
             
             
@@ -111,7 +103,7 @@ const UsersCompo = ()=>{
         <i className='bx bx-plus'></i>
         </Link>
         </button>
-        <input type="text" placeholder='جستجو کاربر' />
+        <input type="text" onChange={e=> setSearchUser(e.target.value)} placeholder='جستجو کاربر' />
         
         </div>
         </div>
@@ -131,7 +123,14 @@ const UsersCompo = ()=>{
         <tbody>
         {users.length ? (
             
-            users.map(u =>(
+            users.filter(u=>{
+            if(!searchUser) return true;
+            return(
+                u.name.toLowerCase().includes(searchUser.toLowerCase())
+                ||u.username.toLowerCase().includes(searchUser.toLowerCase())
+                ||u.email.toLowerCase().includes(searchUser.toLowerCase())
+            )
+            }).map(u =>(
                 <tr key={u.id}>
                 <td>
                 <i className='bin bx bxs-trash-alt' onClick={()=>handleUserDelete(u.id)} ></i>
