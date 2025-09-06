@@ -10,28 +10,28 @@ const UsersCompo = ()=>{
     const navigate = useNavigate()
     const {users, setUsers} = useContext(UserContext);
     const {atl, setAtl} = useContext(UserLenContext);
-
+    
     useEffect(()=>{
-
-
+        
+        
         axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
             if(users.length){
                 
                 setUsers([...users])
-                console.log(users)
-
-
+                
+                
+                
             }
             else{
-
+                
                 setUsers(res.data)
                 setAtl(res.data.length)
-  
-
                 
-
+                
+                
+                
             }
-         
+            
             
         }).catch(err=>{
             console.log(err);
@@ -44,37 +44,60 @@ const UsersCompo = ()=>{
             title: 'حذف کاربر',
             text: `آیا از حذف کاربر ${id} اطمینان دارید؟`,
             icon: 'warning',
+            iconColor: '#e03715ff',
             showCancelButton: true,
-            confirmButtonColor: '#DD6B55',
+            confirmButtonColor: '#e03715ff',
             confirmButtonText: '!بله حذف شود',
-            cancelButtonText: 'لغو'
+            cancelButtonText: 'لغو',
+            color: '#ffffffff',
+            background: "#2a2b3a",
         }).then((result) => {
             if (result.isConfirmed) {
-
-                axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`).then(res=>{
-                    console.log(res);
-                    console.log(atl);
-  
+                axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`).then(res => {
+                    const newUsers = users.filter(u => u.id != id);
+                    setUsers(newUsers);
                     
-                    if(res.status == 200){
-                        const newUsers = users.filter(u=> u.id != id);
-                        setUsers(newUsers)
-                        Swal.fire('حذف شد!', 'کاربر با موفقیت حذف شد.', 'success');
-                    }
-                    else{
-                        Swal.fire(' خطا!', 'خذف کاربر با خطا مواجه شد!', 'error');
-                    }
-
-
-                })
-
+                    // ✅ Custom styled success popup
+                    Swal.fire({
+                        title: 'حذف شد!',
+                        text: 'کاربر با موفقیت حذف شد.',
+                        icon: 'success',
+                        iconColor: '#28a745',          // green icon
+                        confirmButtonColor: '#28a745',
+                        confirmButtonText: 'تایید',
+                        color: '#ffffffff',            // text color
+                        background: "#2a2b3a",
+                    });
+                    
+                }).catch(err => {
+                    // ✅ Custom styled error popup
+                    Swal.fire({
+                        title: 'خطا!',
+                        text: 'حذف کاربر با خطا مواجه شد!',
+                        icon: 'error',
+                        iconColor: '#e03715ff',
+                        confirmButtonColor: '#e03715ff',
+                        confirmButtonText: 'تایید',
+                        color: '#ffffffff',
+                        background: "#2a2b3a",
+                    });
+                });
                 
             } else {
-                Swal.fire('لغو شد', 'کاربر حذف نشد.', 'error');
+                // ✅ Custom styled cancel popup
+                Swal.fire({
+                    title: 'لغو شد',
+                    text: 'کاربر حذف نشد.',
+                    icon: 'error',
+                    iconColor: '#ffc107',          // yellow warning icon
+                    confirmButtonColor: '#ffc107',
+                    confirmButtonText: 'تایید',
+                    color: '#ffffffff',
+                    background: "#2a2b3a",
+                });
             }
         });
     };
-    
     
     return(
         <>
@@ -85,7 +108,7 @@ const UsersCompo = ()=>{
         <div className="input-submit">
         <button className='btn-add-user'>
         <Link to='/users/add' >
-            <i className='bx bx-plus'></i>
+        <i className='bx bx-plus'></i>
         </Link>
         </button>
         <input type="text" placeholder='جستجو کاربر' />
@@ -107,28 +130,28 @@ const UsersCompo = ()=>{
         </thead>
         <tbody>
         {users.length ? (
-
+            
             users.map(u =>(
-            <tr key={u.id}>
-            <td>
-            <i className='bin bx bxs-trash-alt' onClick={()=>handleUserDelete(u.id)} ></i>
-            
-            <i className='edit bx bx-edit' onClick={()=> navigate(`/users/add/${u.id}`, {state:{x:'test'}})}></i>
-            
-            
-            </td>
-            <td>{u.email}</td>
-            <td>{u.username}</td>
-            <td>{u.name}</td>
-            <td>{u.id}</td>
-            </tr>
-
+                <tr key={u.id}>
+                <td>
+                <i className='bin bx bxs-trash-alt' onClick={()=>handleUserDelete(u.id)} ></i>
+                
+                <i className='edit bx bx-edit' onClick={()=> navigate(`/users/add/${u.id}`)}></i>
+                
+                
+                </td>
+                <td>{u.email}</td>
+                <td>{u.username}</td>
+                <td>{u.name}</td>
+                <td>{u.id}</td>
+                </tr>
+                
             ))
             
         ):(
             <tr>
             <td>
-                -
+            -
             </td>
             <td>-</td>
             <td>-</td>

@@ -25,7 +25,7 @@ const ContentCompo = ()=>{
                         
                         <Route path='/users' element={isUser ? <UsersCompo/> : <Navigate to={'/todo'} />} />
                         <Route path='/users/add' element={<AddUserCompo/>} >
-                            <Route path=':userId'/>
+                            <Route path=':userId' element={<AddUserCompo/>}/>
                         </Route>
                         <Route path='/posts' element={<PostCompo/>} />
                         <Route path='/gallery' element={<GalleryCompo/>} />
