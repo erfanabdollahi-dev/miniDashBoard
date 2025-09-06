@@ -1,4 +1,4 @@
 # Mini Dashboard
 
-![alt image]([http://url/to/img.png](https://github.com/erfanabdollahi-dev/miniDashBoard/blob/d281582eb12d4fa74e1f27198e0de9ebe58e36d3/minidashboard.png))
-!(img)
+![alt text](https://github.com/erfanabdollahi-dev/miniDashBoard/blob/3abe6f182b0104b72fdb2e8cefef5a76bcb3edad/minidashboard.png)
+
