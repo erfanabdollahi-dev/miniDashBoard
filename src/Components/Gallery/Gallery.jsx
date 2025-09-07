@@ -7,7 +7,7 @@ import { jpAxios } from '../../JpAxios';
 
 const GalleryCompo = ()=>{
     const [photos, setPhotos] = useState([]);
-    const [searchPhotos, setSearchPhotos] = useState([]);
+    const [searchPhotos, setSearchPhotos] = useState('');
     const [currentPage, setCurrenPage] = useState(1);
     const [allPages, setAllPages] = useState(0);
     const limit = 12;
@@ -48,10 +48,10 @@ const GalleryCompo = ()=>{
         
         <div className="gallery-con-grid">
         <div className='gallery-top'>
-            
+        
         <h1>گالری</h1>
         <div className="input-submit">
-
+        
         <input type="text" onChange={e=> setSearchPhotos(e.target.value)} placeholder='جستجو عکس' />
         </div>
         
@@ -61,8 +61,10 @@ const GalleryCompo = ()=>{
         <ul className='image-list'>
         
         {photos.filter(p=>{
-            if(searchPhotos == '') true;
-            return p.title.toLowerCase().includes(searchPhotos.toLowerCase())
+            if (searchPhotos === '') {
+                return true;
+            }
+            return p.title.toLowerCase().includes(searchPhotos.toLowerCase());
         }).map(p=>(
             <li>
             <div className="g-item">
