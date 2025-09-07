@@ -40,8 +40,8 @@ body{
     transition: .2s;
     max-height: 100vh;
     height: 100%;
-    
-    overflow: hidden;
+    overflow-x: hidden;
+
 }
 
 #sidebar{
@@ -303,4 +303,34 @@ main {
         }
         
     }
+}
+
+
+
+.click-count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    width: 500px;
+    height: 500px;
+    background-color: var(--secondary-base-clr);
+    border-radius: 12px;
+}
+
+.click-count-btn{
+    padding: 15px 20px;
+    font-size: 1.7em;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--accent-clr);
+    transition: .2s;
+    font-weight: bold;
+}
+
+.click-count-btn:hover{
+    transform: scale(1.05);
 }

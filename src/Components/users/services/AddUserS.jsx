@@ -1,6 +1,8 @@
 import { jpAxios } from "../../../JpAxios"
-import Swal from 'sweetalert2';
-export const addUserService = async(data,atl,setAtl,setUsers,users)=>{
+
+
+
+export const addUserService = async(data,atl,setAtl,setUsers,users, Success)=>{
     console.log(data)
     jpAxios.post('/users', data)
     .then(res=>{
@@ -9,12 +11,12 @@ export const addUserService = async(data,atl,setAtl,setUsers,users)=>{
         setAtl(atl+1)
         setUsers([...users, {...data, id: nexId}])
         console.log(res)
-        
+        Success("کاربر افزوده شد" , "کاربر با موفقیت ساخته شد", '/users')
     })
 }
 
 
-export const updateUserService = async (data,setData,users,setUsers,userId,navigate)=>{
+export const updateUserService = async (data,setData,users,setUsers,userId,CountDown)=>{
         jpAxios.put(`/users/${userId}`, data)
         .then(res=>{
             setData({
@@ -34,53 +36,14 @@ export const updateUserService = async (data,setData,users,setUsers,userId,navig
             console.log(res, 'updated')
             
             // alert
+            CountDown('/users')
             
-            let timerInterval;
-            Swal.fire({
-                title: "در حال ویرایش",
-                html: "درحال بسته شدن <b></b> .",
-                timer: 300,
-                timerProgressBar: true,
-                color: '#ffffffff',
-                background : "#2a2b3a",
-                didOpen: () => {
-                    Swal.showLoading();
-                    const timer = Swal.getPopup().querySelector("b");
-                    timerInterval = setInterval(() => {
-                        timer.textContent = `${Swal.getTimerLeft()}`;
-                    }, 20);
-                },
-                willClose: () => {
-                    clearInterval(timerInterval);
-                    navigate('/users')
-                }
-            })
             
         })
         .catch(err=>{
             const updatedUsers = users.map(u=>u.id == userId? {...u,...data}: u);
             setUsers(updatedUsers)
             console.log('updated')
-            let timerInterval;
-            Swal.fire({
-                title: "در حال ویرایش",
-                html: "درحال بسته شدن <b></b> .",
-                timer: 300,
-                timerProgressBar: true,
-                color: '#ffffffff',
-                background : "#2a2b3a",
-                didOpen: () => {
-                    Swal.showLoading();
-                    const timer = Swal.getPopup().querySelector("b");
-                    timerInterval = setInterval(() => {
-                        timer.textContent = `${Swal.getTimerLeft()}`;
-                    }, 20);
-                },
-                willClose: () => {
-                    clearInterval(timerInterval);
-                    navigate('/users')
-                }
-            })
-            
+            CountDown('/users')
         })
     }

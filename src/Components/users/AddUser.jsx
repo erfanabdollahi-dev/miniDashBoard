@@ -4,14 +4,17 @@ import {  useNavigate, useParams } from 'react-router-dom'
 import { UserContext, UserLenContext } from './userContext';
 import { jpAxios } from '../../JpAxios';
 import { addUserService , updateUserService} from './services/AddUserS';
+import Myal from '../HOC/MyAlerts';
 
 
-const AddUserCompo = ()=>{
+const AddUserCompo = (props)=>{
     
     const {userId} = useParams();
     const navigate= useNavigate()
     const {users, setUsers} = useContext(UserContext)
     const {atl, setAtl} = useContext(UserLenContext)
+    const {CountDown, Success} = props
+    
     
     const [data, setData] = useState({
         name:'',
@@ -25,18 +28,20 @@ const AddUserCompo = ()=>{
         }
     })
     
-    
+        
     
     
     
     const handelAddUser = ()=>{
-        addUserService(data,atl, setAtl,setUsers,users);
-        navigate('/users')
-    }
+        addUserService(data,atl, setAtl,setUsers,users,Success)
 
+        
+    }
+    
     const handelChangeUser = ()=>{
         
-        updateUserService(data,setData,users,setUsers,userId,navigate);
+        updateUserService(data,setData,users,setUsers,userId,CountDown);
+        
     }
     useEffect(()=>{
         if(userId){
@@ -181,4 +186,4 @@ const AddUserCompo = ()=>{
 }
 
 
-export default AddUserCompo;
+export default Myal(AddUserCompo);

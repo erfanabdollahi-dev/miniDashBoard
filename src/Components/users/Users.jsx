@@ -5,12 +5,14 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { UserContext , UserLenContext} from './userContext';
 import { jpAxios } from '../../JpAxios';
+import Myal from '../HOC/MyAlerts';
 
-const UsersCompo = ()=>{
+const UsersCompo = (props)=>{
     const navigate = useNavigate()
     const {users, setUsers} = useContext(UserContext);
     const [searchUser, setSearchUser] = useState('')
     const {atl, setAtl} = useContext(UserLenContext);
+    const {Confirm, Success} = props
     
     useEffect(()=>{
         
@@ -32,62 +34,18 @@ const UsersCompo = ()=>{
     }, [])
     
     const handleUserDelete = (id) => {
-        Swal.fire({
-            title: 'حذف کاربر',
-            text: `آیا از حذف کاربر ${id} اطمینان دارید؟`,
-            icon: 'warning',
-            iconColor: '#e03715ff',
-            showCancelButton: true,
-            confirmButtonColor: '#e03715ff',
-            confirmButtonText: '!بله حذف شود',
-            cancelButtonText: 'لغو',
-            color: '#ffffffff',
-            background: "#2a2b3a",
-        }).then((result) => {
+        Confirm(`آیا از حذف کاربر ${id} اطمینان دارید؟`).then((result) => {
             if (result.isConfirmed) {
                 jpAxios.delete(`/users/${id}`).then(res => {
                     const newUsers = users.filter(u => u.id != id);
                     setUsers(newUsers);
                     
-                    // ✅ Custom styled success popup
-                    Swal.fire({
-                        title: 'حذف شد!',
-                        text: 'کاربر با موفقیت حذف شد.',
-                        icon: 'success',
-                        iconColor: '#28a745',          // green icon
-                        confirmButtonColor: '#28a745',
-                        confirmButtonText: 'تایید',
-                        color: '#ffffffff',            // text color
-                        background: "#2a2b3a",
-                    });
                     
-                }).catch(err => {
-                    // ✅ Custom styled error popup
-                    Swal.fire({
-                        title: 'خطا!',
-                        text: 'حذف کاربر با خطا مواجه شد!',
-                        icon: 'error',
-                        iconColor: '#e03715ff',
-                        confirmButtonColor: '#e03715ff',
-                        confirmButtonText: 'تایید',
-                        color: '#ffffffff',
-                        background: "#2a2b3a",
-                    });
-                });
+                    Success('کاربر حذف شد',`کاربر ${id} با موفقیت حذف شد`)
+                    
+                })
                 
-            } else {
-                // ✅ Custom styled cancel popup
-                Swal.fire({
-                    title: 'لغو شد',
-                    text: 'کاربر حذف نشد.',
-                    icon: 'error',
-                    iconColor: '#ffc107',          // yellow warning icon
-                    confirmButtonColor: '#ffc107',
-                    confirmButtonText: 'تایید',
-                    color: '#ffffffff',
-                    background: "#2a2b3a",
-                });
-            }
+            } 
         });
     };
     
@@ -124,12 +82,12 @@ const UsersCompo = ()=>{
         {users.length ? (
             
             users.filter(u=>{
-            if(!searchUser) return true;
-            return(
-                u.name.toLowerCase().includes(searchUser.toLowerCase())
-                ||u.username.toLowerCase().includes(searchUser.toLowerCase())
-                ||u.email.toLowerCase().includes(searchUser.toLowerCase())
-            )
+                if(!searchUser) return true;
+                return(
+                    u.name.toLowerCase().includes(searchUser.toLowerCase())
+                    ||u.username.toLowerCase().includes(searchUser.toLowerCase())
+                    ||u.email.toLowerCase().includes(searchUser.toLowerCase())
+                )
             }).map(u =>(
                 <tr key={u.id}>
                 <td>
@@ -174,4 +132,4 @@ const UsersCompo = ()=>{
 }
 
 
-export default memo(UsersCompo);
+export default UsersCompo;

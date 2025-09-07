@@ -4,7 +4,7 @@ import ContentCompo from './Content'
 import { SidebarContext } from './Contexts/SidebarContext'
 import { BrowserRouter } from 'react-router-dom'
 
-
+import Portal from './Portal'
 
 function App() {
   

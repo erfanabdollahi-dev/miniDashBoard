@@ -6,13 +6,15 @@ import TodoCompo from './Todo/Todo';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AddUserCompo from './users/AddUser';
 import { UserContext, UserLenContext } from './users/userContext';
+import Myal2 from './HOC/Myalerts2'
+
+
 
 const ContentCompo = ()=>{
-    const [isUser, setIsUser] = useState(true)
-
     const [users, setUsers] = useState([])
     const [ atl, setAtl] = useState(0)
- 
+    
+    const render = (Confirm, Success)=><UsersCompo Confirm={Confirm} Success={Success} />
 
     return(
             <>
@@ -23,7 +25,11 @@ const ContentCompo = ()=>{
                     <Routes>
                         <Route path="/" element={<Navigate to="/users" replace />} />
                         
-                        <Route path='/users' element={isUser ? <UsersCompo/> : <Navigate to={'/todo'} />} />
+                        <Route path='/users' element={
+                            <Myal2 render={render} />
+                        } />
+
+
                         <Route path='/users/add' element={<AddUserCompo/>} >
                             <Route path=':userId' element={<AddUserCompo/>}/>
                         </Route>
