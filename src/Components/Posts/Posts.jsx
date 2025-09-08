@@ -9,6 +9,7 @@ const PostCompo = ()=>{
     const [searchPost, setSearchPost] = useState('')
     const [allPages, setAllpages] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
+    
     const limit = 10;
     
     const getPages = async ()=>{
@@ -17,7 +18,7 @@ const PostCompo = ()=>{
     }
     
     const handleNextPage = ()=>{
-
+        
         setCurrentPage(prev=>{
             return prev + 1
         })
@@ -40,26 +41,56 @@ const PostCompo = ()=>{
         })
         
     }
+    
+    const getPagedPosts= ()=>{
+        getPostsPageService(currentPage, limit).then((res)=>{
+            setPosts(res.data)
+            
+        })
+    }
+    
     useEffect(()=>{
         if(allPages == 0){
             
             getPages();
         }
-        getPostsPageService(currentPage, limit).then((res)=>{
-            setPosts(res.data)
-        })
+        getPagedPosts()
         
     },[currentPage])
     
-
+    useEffect(()=>{
+        if(searchPost !=''){
+            
+            if(searchPost && !isNaN(searchPost)){
+                getPostService().then(res=>{
+                    let post = res.data.filter(p=> p.userId === Number(searchPost));
+                    setPosts(post)
+                    
+                })
+            }
+            else{
+                getPostService().then(res=>{
+                    let post = res.data.filter(p=> p.title.toLowerCase().includes(searchPost.toLowerCase()))
+                    setPosts(post)
+                    
+                })
+                
+            }
+        }
+        else{
+            getPagedPosts()
+        }
+    },[searchPost])
+    
+    
     return(
         <>
         <div className="user-grid comment-grid">
         <div className="top">
         <h1>مدیریت پست ها</h1>
         <div className="input-submit">
-
-        <input type="text" onChange={e=> setSearchPost(e.target.value)} placeholder='جستجو پست' />
+        
+        <input type="text" value={searchPost} onChange={e =>setSearchPost(e.target.value)} placeholder='جستجو پست' />
         
         </div>
         </div>
@@ -79,18 +110,12 @@ const PostCompo = ()=>{
         <tbody>
         {posts.length ? (
             
-            posts.filter(u=>{
-                if(!searchPost) return true;
-                return(
-                    u.title.toLowerCase().includes(searchPost.toLowerCase())
-                    ||u.body.toLowerCase().includes(searchPost.toLowerCase())
-                )
-            }).map(u =>(
+            posts.map(u =>(
                 <tr key={u.id}>
                 <td>
-                <i className='bin bx bxs-trash-alt' onClick={()=>handlePostDelete(u.id)} ></i>
+                <i className='bin bx bxs-trash-alt'  onClick={()=>handlePostDelete(u.id)} ></i>
                 
-                <i class='edit bx bxs-comment-detail 'onClick={()=> navigate(`/posts/comments/${u.id}`)}></i>
+                <i className='edit bx bxs-comment-detail 'onClick={()=> navigate(`/posts/comments/${u.id}`)}></i>
                 
                 </td>
                 <td>{u.body}</td>
