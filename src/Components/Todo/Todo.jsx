@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './todo.css'
 import { jpAxios } from '../../JpAxios'
+import { Confirm, Success } from '../../utils/AlertUtil'
 
 
 const TodoCompo = ()=>{
@@ -48,8 +49,15 @@ const TodoCompo = ()=>{
         
     }
     const handleDelete = (id)=>{
-        const updatedTodos = todos.filter(t=> t.id != id )
-        setTodos(updatedTodos)
+        Confirm(`کار شماره ${id} حذف شود؟`).then((res)=>{
+            if(res.isConfirmed){
+
+                const updatedTodos = todos.filter(t=> t.id != id )
+                setTodos(updatedTodos)
+                Success(`کار شماره ${id} حذف شد`)
+            }
+        })
+        
     }
     return(
         <>
