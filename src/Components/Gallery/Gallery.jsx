@@ -89,11 +89,11 @@ const GalleryCompo = ()=>{
         </div>
         <div className='g-btns'>
         <button disabled={currentPage == 1} onClick={handlePrevPage} className='g-btn g-prev'>
-        <i class='bx bxs-chevrons-left'  ></i>
+        <i className='bx bxs-chevrons-left'  ></i>
         </button>
         <h4>{currentPage}</h4>
         <button disabled={currentPage == allPages} className='g-btn g-next' onClick={handleNextPage} >
-        <i class='bx bxs-chevrons-right'  ></i>
+        <i className='bx bxs-chevrons-right'  ></i>
         </button>
         </div>
         </div>
