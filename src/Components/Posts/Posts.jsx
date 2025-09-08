@@ -16,9 +16,8 @@ const PostCompo = ()=>{
         setAllpages(Math.ceil(res.data.length / limit))
     }
     
-    const handleNextPage = (e)=>{
-        e.target.prop
-        console.log(e)
+    const handleNextPage = ()=>{
+
         setCurrentPage(prev=>{
             return prev + 1
         })
