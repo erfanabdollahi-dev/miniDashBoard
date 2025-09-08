@@ -7,6 +7,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import AddUserCompo from './users/AddUser';
 import { UserContext, UserLenContext } from './users/userContext';
 import Myal2 from './HOC/Myalerts2'
+import PostCommentsCompo from './Posts/PostComments';
 
 
 
@@ -34,6 +35,7 @@ const ContentCompo = ()=>{
                             <Route path=':userId' element={<AddUserCompo/>}/>
                         </Route>
                         <Route path='/posts' element={<PostCompo/>} />
+                        <Route path='/posts/comments/:postId' element={<PostCommentsCompo/>} />
                         <Route path='/gallery' element={<GalleryCompo/>} />
                         <Route path='/todo' element={<TodoCompo/>} />
 
