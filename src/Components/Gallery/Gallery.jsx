@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './gallery.css'
 import testImage from '../../assets/image.jpg'
 import { jpAxios } from '../../JpAxios';
+import useTitle from '../../hooks/useTitle';
 
 
 const GalleryCompo = ()=>{
@@ -31,7 +32,7 @@ const GalleryCompo = ()=>{
             
         })
     },[currentPage, allPages])
-    
+    useTitle('gallery')
     
     const handleNextPage = ()=>{
         setCurrenPage(prev=>{

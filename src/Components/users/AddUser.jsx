@@ -5,6 +5,7 @@ import { UserContext, UserLenContext } from './userContext';
 import { jpAxios } from '../../JpAxios';
 import { addUserService , updateUserService} from './services/AddUserS';
 import Myal from '../HOC/MyAlerts';
+import useTitle from '../../hooks/useTitle';
 
 
 const AddUserCompo = (props)=>{
@@ -28,13 +29,13 @@ const AddUserCompo = (props)=>{
         }
     })
     
-        
+
     
     
     
     const handelAddUser = ()=>{
         addUserService(data,atl, setAtl,setUsers,users,Success)
-
+        
         
     }
     
@@ -45,7 +46,7 @@ const AddUserCompo = (props)=>{
     }
     useEffect(()=>{
         if(userId){
-            
+     
             jpAxios.get(`/users/${userId}`)
             .then(res=>{
                 setData({

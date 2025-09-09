@@ -6,6 +6,7 @@ import axios from 'axios';
 import { UserContext , UserLenContext} from './userContext';
 import { jpAxios } from '../../JpAxios';
 import Myal from '../HOC/MyAlerts';
+import useTitle from '../../hooks/useTitle';
 
 const UsersCompo = (props)=>{
     const navigate = useNavigate()
@@ -33,6 +34,7 @@ const UsersCompo = (props)=>{
         })
     }, [])
     
+    useTitle('users')
     const handleUserDelete = (id) => {
         Confirm(`آیا از حذف کاربر ${id} اطمینان دارید؟`).then((result) => {
             if (result.isConfirmed) {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './todo.css'
 import { jpAxios } from '../../JpAxios'
 import { Confirm, Success } from '../../utils/AlertUtil'
+import useTitle from '../../hooks/useTitle'
+import Counter from './Counter'
 
 
 
@@ -13,7 +15,7 @@ const TodoCompo = ()=>{
     const [currentPage, setCurrentPage] = useState(1)
     const limit = 10;
     
-    
+    useTitle('todo')
     useEffect(()=>{
         if(allPages == 0 ){
             jpAxios.get('/todos').then(res=>{
@@ -62,12 +64,15 @@ const TodoCompo = ()=>{
     }
     return(
         <>
+        
         <div className='todo-con'>
+        
         <div className="todo-top">
         <h1>کارها</h1>
         <div className="input-submit">
         <input type="text" onChange={e=> setSearchTodos(e.target.value)} placeholder='جستجو  کار' />
         </div>
+        
         </div>
         <div className="todo-mid">
         <ul className="todo-list">

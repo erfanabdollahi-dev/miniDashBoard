@@ -3,6 +3,7 @@ import './posts.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {  getPostService, getPostsPageService } from './services/PostService'
 import { Confirm, Success } from '../../utils/AlertUtil'
+import useTitle from '../../hooks/useTitle'
 const PostCompo = ()=>{
     const navigate = useNavigate()
     const [posts, setPosts] = useState([])
@@ -29,7 +30,7 @@ const PostCompo = ()=>{
         })
         
     }
-    
+    useTitle('posts')
     const handlePostDelete = (id)=>{
         Confirm(`کار شماره ${id} حذف شود؟`).then((res)=>{
             if(res.isConfirmed){

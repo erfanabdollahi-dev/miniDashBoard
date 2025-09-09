@@ -12,6 +12,7 @@ import AddPostCompo from './Posts/AddPosts2';
 
 
 
+
 const ContentCompo = ()=>{
     const [users, setUsers] = useState([])
     const [ atl, setAtl] = useState(0)
@@ -50,8 +51,12 @@ const ContentCompo = ()=>{
                         <Route path='/gallery' element={<GalleryCompo/>} />
                         <Route path='/todo' element={<TodoCompo/>} />
 
+
                          <Route path="*" element={<Navigate to="/users" replace />} />
-                    </Routes>
+                        </Routes>
+
+
+
                         </UserLenContext.Provider>
                         </UserContext.Provider>
                 </div>
