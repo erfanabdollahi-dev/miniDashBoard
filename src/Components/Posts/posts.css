@@ -26,7 +26,7 @@
 }
 
 .comment-btn{ 
-
+    
     width: 100%;
     display: flex;
     align-items: start;
@@ -45,7 +45,7 @@
 @media (max-height:750px){
     
     .bottom{
-
+        
         overflow: scroll;
     }
     .p-btns{
@@ -63,7 +63,48 @@
     }
     .comment-grid{
         
-
+        
         grid-template-rows:220px 1fr 120px ;
+    }
+}
+
+.p-item{
+    width: 400px;
+}
+
+.p-select{
+
+    border-radius: 8px;
+    height: 37px;
+    transition: .2s ease-in-out;
+    color: var(--text-clr);
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    border: 2px solid var(--line-clr);
+    outline: none;
+  
+    background-color:rgb(36, 37, 54) ;
+}
+
+.p-select:focus{
+    border: 2px solid var(--accent-clr);
+    
+    outline: none;
+    background-color: var();
+}
+.p-select .p-option{
+    outline: none;
+    border: none;
+    background-color: rgb(36, 37, 54);
+    border-radius: 8px;
+    appearance: none;
+}
+
+
+@media(max-width: 800px){
+    
+    .p-item{
+        width: 280px;
     }
 }

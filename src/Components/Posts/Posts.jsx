@@ -89,7 +89,11 @@ const PostCompo = ()=>{
         <div className="top">
         <h1>مدیریت پست ها</h1>
         <div className="input-submit">
-        
+        <button className='btn-add-user'>
+        <Link to='/posts/add' >
+        <i className='bx bx-plus'></i>
+        </Link>
+        </button>
         <input type="text" value={searchPost} onChange={e =>setSearchPost(e.target.value)} placeholder='جستجو پست' />
         
         </div>
@@ -114,6 +118,7 @@ const PostCompo = ()=>{
                 <tr key={u.id}>
                 <td>
                 <i className='bin bx bxs-trash-alt'  onClick={()=>handlePostDelete(u.id)} ></i>
+                <i className='edit bx bx-edit' onClick={()=> navigate(`/posts/add/${u.id}`)}></i>
                 
                 <i className='edit bx bxs-comment-detail 'onClick={()=> navigate(`/posts/comments/${u.id}`)}></i>
                 

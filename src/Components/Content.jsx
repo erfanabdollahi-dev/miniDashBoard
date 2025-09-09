@@ -8,6 +8,7 @@ import AddUserCompo from './users/AddUser';
 import { UserContext, UserLenContext } from './users/userContext';
 import Myal2 from './HOC/Myalerts2'
 import PostCommentsCompo from './Posts/PostComments';
+import AddPostCompo from './Posts/AddPosts2';
 
 
 
@@ -34,8 +35,18 @@ const ContentCompo = ()=>{
                         <Route path='/users/add' element={<AddUserCompo/>} >
                             <Route path=':userId' element={<AddUserCompo/>}/>
                         </Route>
+
+
                         <Route path='/posts' element={<PostCompo/>} />
+
+
+
+                        <Route path='/posts/add' element={<AddPostCompo/>} >
+                            <Route path=':postId' element={<AddPostCompo/>}/>
+                        </Route>
                         <Route path='/posts/comments/:postId' element={<PostCommentsCompo/>} />
+
+
                         <Route path='/gallery' element={<GalleryCompo/>} />
                         <Route path='/todo' element={<TodoCompo/>} />
 
